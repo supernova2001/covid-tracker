@@ -1,0 +1,6 @@
+{% for item in pharmacylist %}
+<p>{{item.shopname}}</p>
+<p>{{item.address}}</p>
+<p>{{item.number}}</p>
+<p><a href={{item.googlemaplink}}>Link</a></p>
+{% endfor %}

@@ -1,0 +1,93 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<style>
+  #navigation{
+    background-color: #ff9933;
+  }
+</style>
+</head>
+<html>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
+    <h3 style="color: white; display: table; margin: auto;">COVID-INDIA TRACKER</h3>
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-hospital"></i> Covid Testing Centers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="oxygen" tabindex="-1"><i class="fas fa-pump-medical"></i> Oxygen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pharmacies" tabindex="-1"><i class="fas fa-capsules"></i> Pharmacies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" tabindex="-1"><i class="fas fa-hand-holding-medical"></i> Donate Blood</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" tabindex="-1"><i class="fas fa-utensils"></i> Food Services</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <marquee  direction="left" height="100px">
+    <div class="input-group">
+    <p>India:</p> <p style="padding-left: 30px;">Confirmed-Cases: {{India.confirmed}}</p> <p style="padding-left: 30px;">Active-Cases: {{India.active}}</p> <p style="padding-left: 30px;">Deaths: {{India.deaths}}</p> 
+      </div>
+  </marquee>
+<div class="container" id="select-container">
+<form method="post" action"home">
+    {% csrf_token %}
+    <div class="input-group">
+    <select class="form-select" name="selectedstate">
+    {% for item in display %}
+    <option>{{item.state}}</option>
+    {% endfor %}
+    </select>
+    <button class="btn" type="submit"><i class="fas fa-virus fa-3x"></i></button>
+    </div>
+</form>
+</div>
+<div class="container">
+<div class="input-group" id="count">
+    {% if statename == '' %}
+    {% else %}
+<p class="state-name">State Name: {{statename}}</p>
+<div class="square-1"><p class="active-cases" style="padding-left: 30px;">Confirmed Cases:{{answer.confirmed}}</p></div>
+<div class="square-2"><p class="recovered" style="padding-left: 30px;"> Recovered:{{answer.recovered}}</p></div>
+<div class="square-3"><p class="deaths" style="padding-left: 30px;">Deaths:{{answer.deaths}}
+    </p></div>
+    <div class="container">
+      <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">District</th>
+              <th scope="col">Active Cases</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for i,value in naam.items %}
+            <tr>
+              <td>{{i}}</td>
+              <td>{{value.active}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+</div>
+</div>
+</body>
+</html>
